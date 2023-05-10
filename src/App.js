@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { useState } from 'react';
+import Amazon from './Components/Amazon';
+import SnapDeal from './Components/SnapDeal';
+import Footer from './Components/Footer';
+import Nav from './Components/Nav';
+import Home from './Components/Home';
+import Flipkart from './Components/Flipkart';
 
 function App() {
+  const [count, setCount] = useState([])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Footer />
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route exact path="/" element={<Home />}>
+          </Route>
+          <Route path="/home" element={<Home />}>
+          </Route>
+          <Route path="/amazon" element={<Amazon count={count} setCount={setCount} />}>
+          </Route>
+          <Route path="/snapdeal" element={<SnapDeal count={count} setCount={setCount} />}>
+          </Route>
+          <Route path="/flipkart" element={<Flipkart count={count} setCount={setCount} />}>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
